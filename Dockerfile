@@ -6,7 +6,6 @@ COPY ./requirements.txt /tmp/requirements.txt
 COPY . /django_backend
 
 WORKDIR /django_backend
-
 EXPOSE 8030
 
 RUN python -m venv /py && \
