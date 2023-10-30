@@ -13,3 +13,22 @@ services:
       - ./django_backend:/django_backend
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8030"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=devdb
+      - DB_USER=maris
+      - DB_PASS=pass123
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16-alpine3.18
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=devdb
+      - POSTGRES_USER=maris
+      - POSTGRES_PASSWORD=pass123
+
+volumes:
+  dev-db-data:
