@@ -23,6 +23,20 @@ services:
     depends_on:
       - db
 
+  vue:
+    build:
+      context: ./vue_frontend
+      args:
+        - DEV=true
+    command: npm run serve
+    ports:
+      - "8035:8035"
+    volumes:
+      - ./vue_frontend:/vue_frontend
+      - /vue_frontend/node_modules
+    depends_on:
+      - django
+
   db:
     image: postgres:16-alpine3.18
     volumes:
